@@ -76,14 +76,17 @@ WSGI_APPLICATION = "myproject.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sinhole',
-        'USER' : 'root',
-        'PASSWORD' : 'admin', # 설정한 비밀번호로 적어주면 된다.
-        'HOST' : '127.0.0.1',
-        'PORT' : '3306',
+        'NAME': 'mydb',
+        'USER': 'myuser',
+        'PASSWORD': 'wlrma0108@',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            'charset': 'utf8mb4',
+        },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
