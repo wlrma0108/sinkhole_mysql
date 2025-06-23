@@ -2,7 +2,7 @@ from django.views.decorators.http import require_POST
 from django.http import JsonResponse
 import json
 from incidents.models import Incident
-from .models import Person, IncidentPersonnel,Resource
+## from .models import Person, IncidentPersonnel,Resource
 from django.shortcuts import render
 from django.http import JsonResponse
 from incidents.models import Incident

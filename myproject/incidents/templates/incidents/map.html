@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="{% static 'leaflet/leaflet.css' %}"/>
+<script src="{% static 'leaflet/leaflet.js' %}"></script>
+
+<div id="map" style="height:500px"></div>
+<script>
+var map = L.map('map').setView([37.5665, 126.9780], 11);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
+fetch("{% url 'incidents:geojson' %}")
+  .then(res=>res.json())
+  .then(data=>{
+    L.geoJSON(data, {
+      pointToLayer: (feature, latlng) => {
+        const color = {
+          '긴급':'red','보통':'orange','낮음':'blue'
+        }[feature.properties.priority] || 'gray';
+        return L.circleMarker(latlng, {radius:8, color});
+      },
+    }).addTo(map);
+  });
+</script>

@@ -1,6 +1,30 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Incident
 from .forms import IncidentForm
+from django.http import JsonResponse
+from django.core.serializers import serialize
+
+
+def incident_geojson(request):
+    qs = Incident.objects.select_related('priority','district')
+    geojson = {
+        "type":"FeatureCollection",
+        "features":[
+            {
+                "type":"Feature",
+                "geometry":{
+                    "type":"Point",
+                    "coordinates":[inc.district.lng, inc.district.lat]
+                },
+                "properties":{
+                    "id":inc.id,
+                    "priority":inc.priority.level_name
+                }
+            } for inc in qs
+        ]
+    }
+    return JsonResponse(geojson)
+
 
 def incident_list(request):
     qs = Incident.objects.order_by('-date_reported')
