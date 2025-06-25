@@ -75,7 +75,7 @@ WSGI_APPLICATION = "myproject.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sinkhole',           
+        'NAME': 'mydb',           
         'USER': 'root',                  
         'PASSWORD': 'root',           
         'HOST': 'localhost',
