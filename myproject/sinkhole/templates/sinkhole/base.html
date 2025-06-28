@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>싱크홀 관리 시스템</title>
+</head>
+<body>
+  <nav>
+    <a href="{% url 'incident_list' %}">사고 목록</a> |
+    <a href="{% url 'stats' %}">자재 통계</a>
+  </nav>
+  <hr>
+  {% block content %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>자재 사용량 통계</h1>
+
+<h2>사고별 자재 사용량</h2>
+<table>
+  <tr><th>사고 ID</th><th>발생일</th><th>총 자재량</th></tr>
+  {% for inc in incident_stats %}
+  <tr>
+    <td>{{ inc.id }}</td><td>{{ inc.date }}</td><td>{{ inc.total_usage|default:"0" }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<h2>월별 자재 사용량</h2>
+<table>
+  <tr><th>월</th><th>사고 건수</th><th>총 자재량</th></tr>
+  {% for stat in monthly_stats %}
+  <tr>
+    <td>{{ stat.month|date:"Y년 m월" }}</td><td>{{ stat.count }}</td><td>{{ stat.total_usage|default:"0" }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}
